@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
+import { HomeComponent } from './home/home.component';
+
+import { myRoutes } from "./routes/app.routes";
+import { DbService } from "./db.service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCw01ZeyKRn_limNemPKmF9aLNanHvNZUg",
@@ -14,13 +18,15 @@ export const firebaseConfig = {
 };
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    myRoutes
   ],
-  providers: [],
+  providers: [DbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,2 +1,2 @@
 # MWAProject
-Shopping Cart implemented using Angular, MongoDB and Node
+Shopping Cart implemented using Angular, MongoDB and NodeJS

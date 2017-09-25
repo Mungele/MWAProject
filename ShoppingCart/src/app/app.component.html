@@ -1,13 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<!--<div class="row columns">-->
-  <!--<button (click)="loginfb()" *ngIf="!(user | async)?.uid">Facebook Login</button><br/>-->
-  <!--<button (click)="loginEmail()" *ngIf="!(user | async)?.uid">Credential Login</button><br/>-->
-  <!--<button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>-->
 
-  <!--<input type="text" id="message" *ngIf="(user | async)?.uid" placeholder="What is it that you do?" (keyup.enter)="Send($event.target.value)" [(ngModel)]="msgVal" />-->
-  <!--<div id="details-container">-->
-    <!--<p *ngFor="let item of items | async">{{item.message}}</p>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="text-left">
+  <h1>
+    {{title}}
+  </h1>
 
-<login></login>
+ <router-outlet></router-outlet> 
+
+</div>
+

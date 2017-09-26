@@ -16,6 +16,8 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 // for database
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { LoginComponent } from './login/login.component';
+import { SearchPipe } from './search.pipe';
+import { CartComponent } from './cart/cart.component';
 
 
 export const firebaseConfig = {
@@ -30,16 +32,16 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
 
-    HomeComponent
-    LoginComponent
+    HomeComponent,
+    LoginComponent,
+    SearchPipe,
+    CartComponent
 
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
-
-    myRoutes
-
+    myRoutes,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     FormsModule,

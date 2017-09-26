@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 export class CartComponent implements OnInit {
   
   products:[any];
+  public blnCart:boolean = false;
+
   constructor(private router:Router) { 
     this.products = JSON.parse(localStorage.getItem('Cart'));
   }
@@ -25,6 +27,9 @@ export class CartComponent implements OnInit {
     let temp:[any] = JSON.parse(localStorage.getItem('Cart'));
     let i = temp.indexOf(prod);
     temp.splice(i,1);
+    if(temp.length==0){
+      this.blnCart = true;
+    }
     
     localStorage.setItem('Cart', JSON.stringify(temp));
     this.products = JSON.parse(localStorage.getItem('Cart'));
@@ -32,6 +37,10 @@ export class CartComponent implements OnInit {
 
   goBack(){
     this.router.navigate(['../']);
+  }
+
+  checkout(){
+    this.router.navigate(['../checkout']);
   }
 
   ngOnInit() {

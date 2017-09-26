@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import {Router} from "@angular/router";
+import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
 interface Product {
   id: number,
@@ -42,12 +44,43 @@ export class DbService {
   }
 ];
 
-  constructor() { 
+  loginres:any;
+  response: any;
+  constructor(private http:Http) {
     console.log(this.products);
+    this.getProduct()
   }
 
   getProducts():[Product]{
     return this.products;
+  }
+
+  getProduct():void{
+    this.http.get("http://localhost:3000/products").subscribe((res: Response) =>{
+      this.response = res.json();
+      console.log(this.response);
+      if(this.response){
+        this.response.forEach(data =>{
+          this.products.push(data)
+          console.log(data);
+        })
+      }
+
+    });
+  }
+  saveUser(userInfo:any) :any{
+    console.log("This is the json"+JSON.stringify(userInfo));
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    this.http.post("http://localhost:3000/login", userInfo,options).subscribe((res: Response) =>{
+      this.response = res.json();
+      console.log("this is responese " +this.response);
+      if(this.response){
+        console.log(this.response)
+        this.loginres = this.response;
+      }
+
+    });
   }
 
 }

@@ -30,16 +30,14 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
 
-    HomeComponent
+    HomeComponent,
     LoginComponent
 
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
-
-    myRoutes
-
+    myRoutes,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     FormsModule,

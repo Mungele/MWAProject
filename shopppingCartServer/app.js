@@ -11,6 +11,7 @@ var UserController = require('./routes/UserController');
 var AuthController = require('./routes/AuthController');
 var DbController = require('./routes/DbController');
 var ProductController = require('./routes/Products/ProductController');
+var TransactionController = require('./routes/Transaction/TransactionController');
 var db = require('./db');
 var app = require('./app');
 var port = process.env.PORT || 3000;
@@ -47,6 +48,7 @@ app.use('/user', UserController);
 app.use('/login', AuthController);
 app.use('/db', DbController);
 app.use('/products', ProductController);
+app.use('/checkout', TransactionController);
 
 app.use(function(req,res,next){
     var db = mongo.db('mongodb://127.0.0.1:27017/AishaDB',{native_parser:true});

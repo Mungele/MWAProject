@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {DbService} from "../db.service";
+
 
 @Component({
   selector: 'app-checkout',
@@ -7,11 +9,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  
+
   products:[any];
   paymentTypes:[any];
   totalPrice:number;
-  constructor(private router:Router) { 
+  constructor(private router:Router, public db: DbService) {
     this.products = JSON.parse(localStorage.getItem('Cart'));
     this.paymentTypes = ['Paypal','Google Wallet'];
     this.totalPrice = this.totalPriceCalc();
@@ -32,6 +34,7 @@ export class CheckoutComponent implements OnInit {
   onSubmit(form) {
     console.log(form.value);
     // submit  the form details to db
+    this.db.saveTransaction(form.value)
     // then, redirect to thank you page
     this.router.navigate(['../thank']);
   }

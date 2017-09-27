@@ -19,7 +19,7 @@ console.log("Am in auth post " + req.body.firstName+req.body.lastName+
          req.body.email);
 //when user logs in using facebook we store information if doesn't already exist
 
-    User.create({
+    User.upsert({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             userName : req.body.UserName,

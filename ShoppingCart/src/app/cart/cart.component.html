@@ -29,5 +29,5 @@
     </tr>
   
   </table>
-  <p  class="text-left">Total Price:{{totalPriceCalc()}} </p>
-  <p class="text-right"><button (click)="checkout()" >checkout</button></p>
+  <p  class="text-left">Total Price:{{totalPriceCalc() | currency:'USD':true:'2.2-2'}} </p>
+  <p class="text-right"><button (click)="checkout()" class="btn btn-primary" [disabled]="blnCart" >checkout</button></p>

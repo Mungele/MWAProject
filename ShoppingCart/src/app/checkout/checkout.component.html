@@ -1,0 +1,33 @@
+<p>
+    Now you are about to make a payment. Please select your payment option [PayPal or Google Wallet] and 
+    click on make payment button.  
+  </p>
+  
+  <h3>Checkout</h3>
+
+  <p class="text-right"><button (click)="goToCart()" >back to shopping cart</button></p>
+  <hr />
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div>
+        <label for="amount">Amount: </label>{{totalPrice | currency:'USD':true:'2.2-2'}}
+        <input type="number"
+               id="amount"
+               [(ngModel)]="totalPrice"
+               name="amount"
+               hidden="hidden">
+      </div>
+      <label for="paymentType">Payment Type:</label>
+      <div class="radio" *ngFor="let p of paymentTypes">
+        <label>
+          <input type="radio"
+                 name="paymentType"
+                 [(ngModel)]="paymentType"
+                 [value]="p"
+                 required
+          >
+          {{p}}
+        </label>
+      </div>
+      <hr />
+      <button type="submit" class="btn btn-primary" [disabled]="!f.valid">make payment</button>
+  </form>

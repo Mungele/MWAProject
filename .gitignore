@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+nodejs-restful-api/
+shopppingCartServer/shoppingcart-37c45-firebase-adminsdk-tyxvp-f1f96c29aa.json
+shopppingCartServer/serviceAccountKey.json

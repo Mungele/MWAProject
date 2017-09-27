@@ -8,7 +8,11 @@ import {Router} from '@angular/router';
 })
 export class ThankComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router) {
+    //clear previous local storage
+    localStorage.setItem('Cart', JSON.stringify([]));
+
+  }
 
   continueShopping(){
     //clear previous local storage

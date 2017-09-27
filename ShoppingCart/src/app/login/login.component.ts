@@ -10,6 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import {DbService} from "../db.service";
+import {Router} from "@angular/router";
 
 interface UserInfo {
   UserName: String,
@@ -32,7 +33,7 @@ export class LoginComponent {
   msgVal: string = '';
   userInfo: UserInfo;
 
-  constructor(public af: AngularFireDatabase, public afAuth: AngularFireAuth, public db : DbService ) {
+  constructor(private router : Router, public af: AngularFireDatabase, public afAuth: AngularFireAuth, public db : DbService ) {
     this.items = af.list('/messages', {
       query: {
         limitToLast: 50
@@ -47,6 +48,15 @@ export class LoginComponent {
         this.name = null;
         return;
       }
+
+      localStorage.setItem('uid',user.uid);
+      user.getIdToken().then(res=>{
+
+        if(res) {
+          localStorage.setItem('token', res);
+        }
+      })
+
 
       this.name =user.displayName;
     });
@@ -84,6 +94,9 @@ export class LoginComponent {
   logout() {
     this.afAuth.auth.signOut();
     localStorage.removeItem('token');
+    localStorage.removeItem('Cart');
+    this.router.navigate(['']);
+
   }
 
   //create the JWT and save it in local storage

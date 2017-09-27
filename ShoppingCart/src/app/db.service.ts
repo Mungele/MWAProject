@@ -51,7 +51,7 @@ export class DbService {
       console.log("this is responese " +this.response.token);
       if(this.response.auth){
         console.log(this.response);
-        localStorage.setItem('token', this.response.token);
+        //localStorage.setItem('token', this.response.token);
         localStorage.setItem('uname', userInfo.UserName);
         localStorage.setItem('email', userInfo.email);
         this.loginres = this.response;
@@ -59,7 +59,7 @@ export class DbService {
 
     });
   }
-  saveTransaction(transaction){
+  saveTransaction(transaction,uid,token){
     let uname= localStorage.getItem('uname');
 
     let email = localStorage.getItem('email');
@@ -70,14 +70,16 @@ export class DbService {
       'paymentType': transaction.paymentType,
       'amount':transaction.amount,
       'cart': cart};
-    console.log(trans);
+
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
 
     let options = new RequestOptions({ headers: headers });
-    this.http.post("http://localhost:3000/checkout", trans,options).subscribe((res: Response) =>{
+
+
+    this.http.post("http://localhost:3000/checkout", {uid,token,trans},options).subscribe((res: Response) =>{
+      console.log("this is responese ");
       this.response = res.json();
-      console.log("this is responese " +this.response.token);
       if(this.response){
         console.log(this.response);
        //this.loginres = this.response;

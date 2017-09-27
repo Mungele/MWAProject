@@ -2,40 +2,48 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
-router.use(bodyParser.urlencoded({ extended: true }));
+var admin = require("firebase-admin");
+var serviceAccount = require("../../serviceAccountKey.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://shoppingcart-37c45.firebaseio.com"
+});
+
+
+//router.use(bodyParser.urlencoded({ extended: true }));
 var Transaction = require('./Transaction');
 
 // CREATES A NEW Transaction
 router.post('/', function (req, res) {
-    console.log("in checkout post "+ req.body.uname );
+    console.log("in checkout post "+ req.body.trans.email );
 
-        // var token = req.headers['x-access-token'];
-        // if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
-        //
-        // jwt.verify(token, config.secret, function(err, decoded) {
-        //     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-        //
-        //
-        //     User.findById(decoded.id, function (err, user) {
-        //         if (err) return res.status(500).send("There was a problem finding the user.");
-        //         if (!user) return res.status(404).send("No user found.");
-        //
-        //         res.status(200).send(user);
-        //     });
-        // });
+     var token = req.body.token;
+     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
 
+     admin.auth().verifyIdToken(token)
+        .then(function(decodedToken) {
+            var uid = decodedToken.uid;
+            // ...
 
-    Transaction.create({
-            uname: req.body.uname,
-            email: req.body.email,
-            paymentType: req.body.paymentType,
-            amount: req.body.amount,
-            cart:req.body.cart
-        }, 
-        function (err, user) {
-            if (err) return res.status(500).send("There was a problem adding the information to the database.");
-            res.status(200).send(user);
-        });
+            if (uid === req.body.uid) {
+                console.log(uid+" is  equal to "+ req.body.uid );
+                Transaction.create({
+                        uname: req.body.trans.uname,
+                        email: req.body.trans.email,
+                        paymentType: req.body.trans.paymentType,
+                        amount: req.body.trans.amount,
+                        cart: req.body.trans.cart
+                    },
+                    function (err, user) {
+                        if (err) return res.status(500).send("There was a problem adding the information to the database.");
+                        res.status(200).send(user);
+                    });
+            }
+            console.log(uid+" is not equal to "+ req.body.uid );
+        }).catch(function(error) {
+        // Handle error
+    });
 });
 
 // RETURNS ALL THE Transactions IN THE DATABASE

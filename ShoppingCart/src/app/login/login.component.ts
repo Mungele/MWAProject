@@ -67,9 +67,11 @@ export class LoginComponent {
 
       this.name =user.displayName;
       console.log(user);
+      let names = this.name.split(" ");
+      console.log(names);
       this.userInfo={'UserName': user.displayName,
-        'firstName':user.displayName,
-        'lastName' : user.displayName,
+        'firstName':names[0],
+        'lastName' : names[1],
         'email': user.email};
       this.saveUser();
     });

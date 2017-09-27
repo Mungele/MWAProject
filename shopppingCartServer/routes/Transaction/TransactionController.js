@@ -3,17 +3,17 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-var Product = require('./Product');
+var Transaction = require('./Transaction');
 
-// CREATES A NEW PRODUCT
+// CREATES A NEW Transaction
 router.post('/', function (req, res) {
-    Product.create({
-            name: string,
-            category: string,
-            quantity: number,
-            availavility: boolean,
-            details:string,
-            price: number
+    console.log("in checkout post "+ req.body.uname );
+    Transaction.create({
+            uname: req.body.uname,
+            email: req.body.email,
+            paymentType: req.body.paymentType,
+            amount: req.body.amount,
+            cart:req.body.cart
         }, 
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the database.");
@@ -21,36 +21,36 @@ router.post('/', function (req, res) {
         });
 });
 
-// RETURNS ALL THE PRODUCTS IN THE DATABASE
+// RETURNS ALL THE Transactions IN THE DATABASE
 router.get('/', function (req, res) {
     console.log("am in db get");
-    Product.find({}, function (err, products) {
+    Transaction.find({}, function (err, products) {
         if (err) return res.status(500).send("There was a problem finding the users.");
         console.log("the products are"+ products)
         res.status(200).send(products);
     });
 });
 
-// GETS A SINGLE PRODUCT FROM THE DATABASE
+// GETS A SINGLE Transaction FROM THE DATABASE
 router.get('/:id', function (req, res) {
-    Product.findById(req.params.id, function (err, user) {
+    Transaction.findById(req.params.id, function (err, user) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");
         res.status(200).send(user);
     });
 });
 
-// DELETES A PRODUCT FROM THE DATABASE
+// DELETES A Transaction FROM THE DATABASE
 router.delete('/:id', function (req, res) {
-    Product.findByIdAndRemove(req.params.id, function (err, user) {
+    Transaction.findByIdAndRemove(req.params.id, function (err, user) {
         if (err) return res.status(500).send("There was a problem deleting the user.");
         res.status(200).send("User: "+ user.name +" was deleted.");
     });
 });
 
-// UPDATES A SINGLE PRODUCTS IN THE DATABASE
+// UPDATES A SINGLE Transactions IN THE DATABASE
 router.put('/:id', function (req, res) {
-    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
+    Transaction.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
         if (err) return res.status(500).send("There was a problem updating the user.");
         res.status(200).send(user);
     });

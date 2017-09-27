@@ -25,8 +25,16 @@ export class CartComponent implements OnInit {
 
   removeProduct(prod){
     let temp:[any] = JSON.parse(localStorage.getItem('Cart'));
-    let i = temp.indexOf(prod);
-    temp.splice(i,1);
+    //let i = temp.indexOf(prod);
+    let j:number = -1;
+    for(let i=0; i<temp.length; i++){
+      if(prod.id===temp[i].id && prod.name===temp[i].name) {
+          j = i;
+          break;
+      }
+    }
+
+    temp.splice(j,1);
     if(temp.length==0){
       this.blnCart = true;
     }

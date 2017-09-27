@@ -10,12 +10,13 @@ import { DbService } from "../db.service";
 })
 export class HomeComponent implements OnInit {
 
-  public products;
+  public products:any[];
   public search = '';
   public addedToCart:string = '';
   public blnCart:boolean = true;
   constructor(private dbService: DbService, private router:Router) { 
       this.products = dbService.getProducts();
+      
       if(!JSON.parse(localStorage.getItem('Cart'))){
         localStorage.setItem('Cart', JSON.stringify([]));
       }else{
@@ -58,6 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  
   }
 
 }

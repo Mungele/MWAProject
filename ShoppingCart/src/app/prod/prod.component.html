@@ -1,0 +1,13 @@
+<h3>Product Details:</h3>
+<p class="text-right"><button (click)="goBack()" >back</button></p>
+
+<!-- <div *ngFor="let value of product"> -->
+  <div>
+<!-- <label class="prodLabel">{{key}}:</label> -->
+<label class="prodData">{{product.name}}</label>
+</div>
+
+<p><button (click)="addProduct(product)" class="text-left">add to cart</button></p>
+
+<p>Summary of items added to cart: [{{addedToCart}}]</p>
+

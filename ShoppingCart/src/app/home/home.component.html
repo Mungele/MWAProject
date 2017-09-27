@@ -9,7 +9,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Id</th>
+    <!--th>Id</th-->
     <th>Name</th>
     <th>Category</th>
     <th>Price</th>
@@ -19,8 +19,8 @@
   
   <tr *ngFor="let product of products" >
       
-    <td *ngIf="product.name+' '+product.category | searchPipe: search" >{{product.id}}</td>
-    <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.name}}</td>
+    <!--td *ngIf="product.name+' '+product.category | searchPipe: search" >{{product.id}}</td-->
+    <td *ngIf="product.name+' '+product.category  | searchPipe: search" ><a [routerLink]="['prod',product.id]">{{product.name}}</a></td>
     <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.category}}</td>
     <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.price}}</td>
     <td *ngIf="product.name+' '+product.category  | searchPipe: search" >

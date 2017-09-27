@@ -20,6 +20,7 @@ import { SearchPipe } from './search.pipe';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ThankComponent } from './thank/thank.component';
+import { GuardsGuard } from "./guards/guards.guard";
 
 
 export const firebaseConfig = {
@@ -33,9 +34,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-
     HomeComponent,
-
     LoginComponent,
     SearchPipe,
     CartComponent,
@@ -53,9 +52,8 @@ export const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule
-
   ],
-  providers: [DbService],
+  providers: [DbService, GuardsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

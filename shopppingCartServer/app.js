@@ -53,7 +53,7 @@ app.use(function(req,res,next){
     req.db=db;
     next();
     db.close();
-    mongoose.connect('mongodb://mongodb://cart1:shoppingcart1@ds147864.mlab.com:47864/mwacartdb', { useMongoClient: true });
+    mongoose.connect('mongodb://cart1:shoppingcart1@ds147864.mlab.com:47864/mwacartdb', { useMongoClient: true });
 });
 
 

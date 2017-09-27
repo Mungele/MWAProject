@@ -74,9 +74,10 @@ export class DbService {
     let options = new RequestOptions({ headers: headers });
     this.http.post("http://localhost:3000/login", userInfo,options).subscribe((res: Response) =>{
       this.response = res.json();
-      console.log("this is responese " +this.response);
+      console.log("this is responese " +this.response.token);
       if(this.response){
-        console.log(this.response)
+        console.log(this.response);
+        localStorage.setItem('token', this.response.token);
         this.loginres = this.response;
       }
 

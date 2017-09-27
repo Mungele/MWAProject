@@ -9,6 +9,14 @@ import { AngularFireDatabase } from 'angularfire2/database';
 // for Observables
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import {DbService} from "../db.service";
+
+interface UserInfo {
+  UserName: String,
+  firstName:String,
+  lastName : String,
+  email: String
+}
 
 @Component({
   selector: 'login',
@@ -22,8 +30,9 @@ export class LoginComponent {
   user: Observable<firebase.User>;
   name:any;
   msgVal: string = '';
+  userInfo: UserInfo;
 
-  constructor(public af: AngularFireDatabase, public afAuth: AngularFireAuth ) {
+  constructor(public af: AngularFireDatabase, public afAuth: AngularFireAuth, public db : DbService ) {
     this.items = af.list('/messages', {
       query: {
         limitToLast: 50
@@ -46,18 +55,41 @@ export class LoginComponent {
 
   loginfb() {
     this.afAuth.auth.signInWithPopup( new firebase.auth.FacebookAuthProvider())
-      .then(res => console.log(res));
+      .then(res => {
+        console.log(res)
+      });
+    this.afAuth.authState.subscribe(user=>
+    {
+      if (!user){
+        this.name = null;
+        return;
+      }
+
+      this.name =user.displayName;
+      console.log(user);
+      this.userInfo={'UserName': user.displayName,
+        'firstName':user.displayName,
+        'lastName' : user.displayName,
+        'email': user.email};
+      this.saveUser();
+    });
+
+
+
   }
 
-  loginEmail() {
-    this.afAuth.auth.signInWithCredential( new firebase.auth.FacebookAuthProvider())
-      .then(res => console.log(res));
-  }
 
   logout() {
     this.afAuth.auth.signOut();
   }
 
+  //create the JWT and save it in local storage
+  saveUser(){
+    this.db.saveUser(this.userInfo);
+
+
+
+  }
 
   chatSend(theirMessage: string) {
     this.items.push({ message: theirMessage, name:this.name });

@@ -35,11 +35,13 @@ export const firebaseConfig = {
     AppComponent,
 
     HomeComponent,
+
     LoginComponent,
     SearchPipe,
     CartComponent,
     CheckoutComponent,
     ThankComponent
+
 
   ],
   imports: [

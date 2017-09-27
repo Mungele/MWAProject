@@ -8,11 +8,15 @@ import { CartComponent } from "../cart/cart.component";
 import { CheckoutComponent } from "../checkout/checkout.component";
 import { ThankComponent } from "../thank/thank.component";
 import { GuardsGuard } from "../guards/guards.guard";
+
 import { ProdComponent } from "../prod/prod.component";
+
+import { CartGuard} from "../guards/cart.guard"
+
 
 const MY_ROUTES: Routes = [
      { path: '', component: HomeComponent },
-     { path: 'cart', component: CartComponent },
+     { path: 'cart', component: CartComponent, canActivate: [CartGuard] },
      { path: 'checkout', component: CheckoutComponent, canActivate: [GuardsGuard] },
      { path : 'login', component : LoginComponent},
      { path: 'thank', component: ThankComponent },

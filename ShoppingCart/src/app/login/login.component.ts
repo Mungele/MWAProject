@@ -83,6 +83,7 @@ export class LoginComponent {
 
   logout() {
     this.afAuth.auth.signOut();
+    localStorage.removeItem('token');
   }
 
   //create the JWT and save it in local storage

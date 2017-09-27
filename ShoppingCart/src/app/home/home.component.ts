@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     let temp:[any] = JSON.parse(localStorage.getItem('Cart'));
     let blnExist:boolean = false;
     for(let i=0; i<temp.length; i++){
-      if(prod.id===temp[i].id) {
+      if(prod.id===temp[i].id && prod.name===temp[i].name) {
           blnExist = true;
           break;
       }

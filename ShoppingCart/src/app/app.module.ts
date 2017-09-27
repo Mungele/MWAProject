@@ -21,7 +21,11 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ThankComponent } from './thank/thank.component';
 import { GuardsGuard } from "./guards/guards.guard";
+
+import { ProdComponent } from './prod/prod.component';
+
 import { CartGuard } from "./guards/cart.guard";
+
 
 
 
@@ -41,7 +45,8 @@ export const firebaseConfig = {
     SearchPipe,
     CartComponent,
     CheckoutComponent,
-    ThankComponent
+    ThankComponent,
+    ProdComponent
 
 
   ],

@@ -38,6 +38,7 @@ export class DbService {
           this.products.push(data)
           console.log(data);
         })
+        localStorage.setItem('Products', JSON.stringify(this.products));
       }
 
     });
@@ -50,8 +51,7 @@ export class DbService {
       this.response = res.json();
       console.log("this is responese " +this.response.token);
       if(this.response.auth){
-        console.log(this.response);
-        //localStorage.setItem('token', this.response.token);
+
         localStorage.setItem('uname', userInfo.UserName);
         localStorage.setItem('email', userInfo.email);
         this.loginres = this.response;

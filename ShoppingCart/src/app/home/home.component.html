@@ -1,24 +1,35 @@
-<h4>Home Page - Products</h4>
+<p>
+  Welcome to TZ STORE, please select the products you want to add to your shopping cart. When you 
+  are done click the shopping cart button at the bottom to review your order and checkout.
+</p>
 
+<h3>Products</h3>
+
+<label>Search: </label><input type="text" [(ngModel)]="search" />
 <table class="table table-striped">
   <thead>
   <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Category</th>
-    <th>Quantity</th>
     <th>Price</th>
     <th>Action</th>
   </tr>
   </thead>
   
-  <tr *ngFor="let product of products">
-    <td>{{product.id}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.category}}</td>
-    <td>{{product.quantity}}</td>
-    <td>{{product.price}}</td>
-    <td><button  name="include" >add to cart</button></td>
+  <tr *ngFor="let product of products" >
+      
+    <td *ngIf="product.name+' '+product.category | searchPipe: search" >{{product.id}}</td>
+    <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.name}}</td>
+    <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.category}}</td>
+    <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.price}}</td>
+    <td *ngIf="product.name+' '+product.category  | searchPipe: search" >
+      <button (click)="addProduct(product)" >add to cart</button>
+    </td>
+
   </tr>
 
 </table>
+<p class="text-right"><button (click)="goToCart()" class="btn btn-primary" [disabled]="blnCart" >shopping cart</button></p>
+
+<p>Summary of tems added to cart: [{{addedToCart}}]</p>

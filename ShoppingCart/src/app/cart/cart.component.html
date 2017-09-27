@@ -1,0 +1,33 @@
+<p>
+  The following is your shopping cart. Please review it and once you are satisfied click the checkout button to 
+  proceed with payment.  
+</p>
+
+<h3>Shopping Cart</h3>
+<p class="text-right"><button (click)="goBack()" >back</button></p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    
+    <tr *ngFor="let product of products" >
+        
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.category}}</td>
+      <td>{{product.price}}</td>
+      <td>
+        <button (click)="removeProduct(product)" >remove from cart</button>
+      </td>
+  
+    </tr>
+  
+  </table>
+  <p  class="text-left">Total Price:{{totalPriceCalc() | currency:'USD':true:'2.2-2'}} </p>
+  <p class="text-right"><button (click)="checkout()" class="btn btn-primary" [disabled]="blnCart" >checkout</button></p>

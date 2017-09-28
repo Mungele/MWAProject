@@ -58,13 +58,19 @@ export class HomeComponent implements OnInit {
   goToCart(){
     this.router.navigate(['../cart']);
   }
-  totalPriceCalc():number{
-    let totalPrice = 0;
-    for(let i=0; i<this.products.length; i++){
-      totalPrice += this.products[i].price;
+   totalPriceCalc():number{
+     let cartProd=[];
+   cartProd =  JSON.parse(localStorage.getItem('Cart'));
+
+     let totalPrice = 0;
+     if(cartProd) {
+      for (let i = 0; i < cartProd.length; i++) {
+        totalPrice += cartProd[i].price;
+      }
+      return totalPrice;
     }
-    return totalPrice;
-  }
+     return 0;
+   }
   checkout(){
     this.router.navigate(['../checkout']);
   }

@@ -1,3 +1,4 @@
+//@Author: Aisha Kulindwa
 import { Component, OnInit } from '@angular/core';
 
 // for auth

@@ -1,3 +1,4 @@
+//@Author: John Masamalo
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

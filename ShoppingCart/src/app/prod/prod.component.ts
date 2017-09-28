@@ -1,3 +1,4 @@
+//@Authors: Aisha Kulindwa & John Masamalo
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Subscription } from "rxjs/Rx";

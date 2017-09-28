@@ -1,17 +1,9 @@
+//Author:  Aisha Kulindwa
+
 import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
-
-interface Product {
-  id: number,
-  name: string,
-  category: string,
-  quantity: number,
-  availavility: boolean,
-  details:string,
-  price: number
-}
 
 @Injectable()
 export class DbService {

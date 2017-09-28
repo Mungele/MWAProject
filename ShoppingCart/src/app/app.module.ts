@@ -25,8 +25,7 @@ import { GuardsGuard } from "./guards/guards.guard";
 import { ProdComponent } from './prod/prod.component';
 
 import { CartGuard } from "./guards/cart.guard";
-
-
+import { ProdDetailGuard} from "./guards/prod-detail.guard";
 
 
 export const firebaseConfig = {
@@ -60,7 +59,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [DbService, GuardsGuard,CartGuard],
+  providers: [DbService, GuardsGuard,CartGuard, ProdDetailGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,8 @@ var ProductSchema = new mongoose.Schema({
         quantity: Number,
         availability: Boolean,
         details:String,
-        price: Number
+        price: Number,
+        url:String
 
 });
 mongoose.model('Product', ProductSchema);

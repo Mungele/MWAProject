@@ -23,8 +23,8 @@ export class ProdComponent {
   id: string;
   public addedToCart:string = '';
   public product:Product ;
-  constructor(private router:Router, private activatedRoute: ActivatedRoute) { 
-    
+  constructor(private router:Router, private activatedRoute: ActivatedRoute) {
+
     if(!JSON.parse(localStorage.getItem('Cart'))){
       localStorage.setItem('Cart', JSON.stringify([]));
     }else{
@@ -42,7 +42,7 @@ export class ProdComponent {
         this.id = param['id'];
         //console.log(this.id)
         let temp:[any] = JSON.parse(localStorage.getItem('Products'));
-        
+
          for(let i=0; i<temp.length; i++){
            if(this.id==temp[i].id) {
             this.product=temp[i];
@@ -50,31 +50,31 @@ export class ProdComponent {
              //this.product = JSON.parse(temp[i]);
            }
          }
-        
-      }
-    ); 
 
-    
-    
+      }
+    );
+
+
+
   }
 
-  addProduct(prod){
+  addProduct(){
     let temp:[any] = JSON.parse(localStorage.getItem('Cart'));
     let blnExist:boolean = false;
     for(let i=0; i<temp.length; i++){
-      if(prod.id===temp[i].id && prod.name===temp[i].name) {
+      if(this.product.id===temp[i].id && this.product.name===temp[i].name) {
           blnExist = true;
           break;
       }
     }
-    if(!blnExist) { 
-      temp.push(prod);
+    if(!blnExist) {
+      temp.push(this.product);
       localStorage.setItem('Cart', JSON.stringify(temp));
       if(this.addedToCart===''){
-        this.addedToCart += prod.name;
+        this.addedToCart += this.product.name;
         //console.log(prod.name);
       }else{
-        this.addedToCart += ', '+prod.name;
+        this.addedToCart += ', '+this.product.name;
         //console.log(prod.name);
       }
     }
@@ -86,7 +86,7 @@ export class ProdComponent {
 
   getProduct(){
     let temp:[any] = JSON.parse(localStorage.getItem('Products'));
-    
+
     for(let i=0; i<temp.length; i++){
 
       if(this.id==temp[i].id) {
@@ -99,6 +99,6 @@ export class ProdComponent {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
- 
+
 
 }

@@ -1,13 +1,32 @@
-<h3>Product Details:</h3>
-<p class="text-right"><button (click)="goBack()" >back</button></p>
+<div class="container">
+  <div class="row">
+    <h3>Product Details:</h3>
+    <div class="col-xs-4 item-photo">
+      <img style="max-width:100%;" src="{{product.url}}" />
+    </div>
+    <div class="col-xs-6" style="border:0px solid gray">
 
-<!-- <div *ngFor="let value of product"> -->
-  <div>
-<!-- <label class="prodLabel">{{key}}:</label> -->
-<label class="prodData">{{product.name}}</label>
+
+
+<h3 class="prodData">{{product.name}}</h3>
+    <h5 style="color:#337ab7">{{product.category}}</h5>
+      <h6 class="title-price"><small>Price</small></h6>
+    <h3 style="margin-top:0px">US ${{product.price}}</h3>
+
+      <button (click)="addProduct()" class="text-left">add to cart</button>
+      <button (click)="goBack()" >back</button>
+
+
+    </div>
+    <div style="background-color: #a5a5a5">
+    <div class="col-xs-12" style="width:100%;border-top:1px solid silver">
+      <p style="padding:15px; text-align: center">{{product.details}}</p>
+    </div>
+
+    </div>
+
+
+
+  </div>
+  <p>Summary of items added to cart: [{{addedToCart}}]</p>
 </div>
-
-<p><button (click)="addProduct(product)" class="text-left">add to cart</button></p>
-
-<p>Summary of items added to cart: [{{addedToCart}}]</p>
-

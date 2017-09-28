@@ -1,3 +1,4 @@
+//@Author: John Masamalo
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {DbService} from "../db.service";
@@ -21,7 +22,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   goToCart(){
-    this.router.navigate(['../cart']);
+    this.router.navigate(['cart']);
   }
 
   totalPriceCalc():number{
@@ -40,7 +41,7 @@ export class CheckoutComponent implements OnInit {
     this.db.saveTransaction(form.value,uid,token);
 
     // then, redirect to thank you page
-    this.router.navigate(['../thank']);
+    this.router.navigate(['thank']);
   }
 
   ngOnInit() {

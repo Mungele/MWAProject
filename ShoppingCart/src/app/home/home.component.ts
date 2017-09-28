@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   public search = '';
   public addedToCart:string = '';
   public blnCart:boolean = true;
-  constructor(private dbService: DbService, private router:Router) { 
+  constructor(private dbService: DbService, private router:Router) {
       this.products = dbService.getProducts();
-      
+
       if(!JSON.parse(localStorage.getItem('Cart'))){
         localStorage.setItem('Cart', JSON.stringify([]));
       }else{
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
           break;
       }
     }
-    if(!blnExist) { 
+    if(!blnExist) {
       temp.push(prod);
       localStorage.setItem('Cart', JSON.stringify(temp));
       this.blnCart = false;
@@ -58,9 +58,24 @@ export class HomeComponent implements OnInit {
   goToCart(){
     this.router.navigate(['../cart']);
   }
+   totalPriceCalc():number{
+     let cartProd=[];
+   cartProd =  JSON.parse(localStorage.getItem('Cart'));
 
+     let totalPrice = 0;
+     if(cartProd) {
+      for (let i = 0; i < cartProd.length; i++) {
+        totalPrice += cartProd[i].price;
+      }
+      return totalPrice;
+    }
+     return 0;
+   }
+  checkout(){
+    this.router.navigate(['../checkout']);
+  }
   ngOnInit() {
-  
+
   }
 
 }

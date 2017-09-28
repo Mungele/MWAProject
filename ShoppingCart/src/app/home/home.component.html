@@ -1,12 +1,15 @@
 <!--@Author: John Masamalo-->
 <p>
-  Welcome to TZ STORE, please select the products you want to add to your shopping cart. When you 
+  Welcome to TZ STORE, please select the products you want to add to your shopping cart. When you
   are done click the shopping cart button at the bottom to review your order and checkout.
 </p>
 
 <h3>Products</h3>
 
 <label>Search: </label><input type="text" [(ngModel)]="search" />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-8">
 <table class="table table-striped">
   <thead>
   <tr>
@@ -17,9 +20,9 @@
     <th>Action</th>
   </tr>
   </thead>
-  
+
   <tr *ngFor="let product of products" >
-      
+
     <!--td *ngIf="product.name+' '+product.category | searchPipe: search" >{{product.id}}</td-->
     <td *ngIf="product.name+' '+product.category  | searchPipe: search" ><a [routerLink]="['prod',product.id]">{{product.name}}</a></td>
     <td *ngIf="product.name+' '+product.category  | searchPipe: search" >{{product.category}}</td>
@@ -32,5 +35,41 @@
 
 </table>
 <p class="text-right"><button (click)="goToCart()" class="btn btn-primary" [disabled]="blnCart" >shopping cart</button></p>
+    </div>
 
-<p>Summary of items added to cart: [{{addedToCart}}]</p>
+    <div class="col-xs-4">
+
+
+
+      <div class="panel-body">
+        <table class="table table-striped">
+        <th><strong>Review Order</strong></th>
+        <tr>
+          <strong>Subtotal (# item)</strong>
+          <div class="pull-right">{{totalPriceCalc() | currency:'USD':true:'2.2-2'}}</div>
+        </tr>
+
+
+        <tr>
+          <strong>Tax</strong>
+          <div class="pull-right">-</div>
+        </tr>
+        <tr>
+          <small>Shipping</small>
+          <div class="pull-right"><span>-</span></div>
+        </tr>
+
+        <tr >
+          <strong>Order Total</strong>
+          <div class="pull-right">{{totalPriceCalc() | currency:'USD':true:'2.2-2'}}</div>
+          <hr>
+        </tr>
+
+        <button type="button" (click)="checkout()" class="btn btn-primary btn-lg btn-block">Checkout</button>
+
+
+      </table>
+      </div>
+  </div>
+  </div>
+    </div>

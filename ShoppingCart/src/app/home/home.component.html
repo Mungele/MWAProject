@@ -34,7 +34,6 @@
   </tr>
 
 </table>
-      <p class="text-right"><button (click)="goToCart()" class="btn btn-primary" [disabled]="blnCart" >shopping cart</button></p>
     </div>
 
     <div class="col-xs-4">
@@ -65,7 +64,8 @@
           <hr>
         </tr>
 
-        <button type="button" (click)="checkout()" class="btn btn-primary btn-lg btn-block">Checkout</button>
+          <p class="text-right"><button (click)="goToCart()" class="btn btn-primary btn-lg btn-block" [disabled]="blnCart" >View Cart</button></p>
+
 
 
       </table>

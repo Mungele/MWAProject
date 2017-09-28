@@ -4,6 +4,7 @@ var TransactionSchema = new mongoose.Schema({
         email: String,
         paymentType: String,
         amount: Number,
+        date:Date,
         cart:Object
 
 });

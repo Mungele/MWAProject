@@ -34,6 +34,7 @@ router.post('/', function (req, res) {
                         email: req.body.trans.email,
                         paymentType: req.body.trans.paymentType,
                         amount: req.body.trans.amount,
+                        date:new Date(),
                         cart: req.body.trans.cart
                     },
                     function (err, user) {

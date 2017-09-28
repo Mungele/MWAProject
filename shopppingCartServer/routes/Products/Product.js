@@ -7,6 +7,7 @@ var ProductSchema = new mongoose.Schema({
         availability: Boolean,
         details:String,
         price: Number,
+        date:Date,
         url:String
 
 });

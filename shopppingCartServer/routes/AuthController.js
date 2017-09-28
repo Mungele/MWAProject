@@ -23,12 +23,14 @@ console.log("Am in auth post " + req.body.firstName+req.body.lastName+
     User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            userName : req.body.UserName,
+            UserName : req.body.UserName,
             email : req.body.email,
         },
         function (err, user) {
             if (err){console.log(err); return res.status(500).send("There was a problem logging user.")}
             // create a token
+            //currently not in user
+
             console.log(user);
             var token = jwt.sign({ id: user._id }, config.secret, {
                 expiresIn: 86400 // expires in 24 hours

@@ -5,12 +5,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var index = require('./routes/index');
-var users = require('./routes/users');
 var UserController = require('./routes/UserController');
 var AuthController = require('./routes/AuthController');
-var DbController = require('./routes/DbController');
 var ProductController = require('./routes/Products/ProductController');
 var TransactionController = require('./routes/Transaction/TransactionController');
 var db = require('./db');
@@ -43,21 +40,12 @@ app.use(function (req, res, next) {
     next();
 });
 
+
 app.use('/', index);
-app.use('/users', users);
 app.use('/user', UserController);
 app.use('/login', AuthController);
-app.use('/db', DbController);
 app.use('/products', ProductController);
 app.use('/checkout', TransactionController);
-
-app.use(function(req,res,next){
-    var db = mongo.db('mongodb://127.0.0.1:27017/AishaDB',{native_parser:true});
-    req.db=db;
-    next();
-    db.close();
-    mongoose.connect('mongodb://cart1:shoppingcart1@ds147864.mlab.com:47864/mwacartdb', { useMongoClient: true });
-});
 
 
 

@@ -42,15 +42,16 @@ export class ProdComponent {
       (param: any) => {
         this.id = param['id'];
         //console.log(this.id)
-        let temp:[any] = JSON.parse(localStorage.getItem('Products'));
-
-         for(let i=0; i<temp.length; i++){
-           if(this.id==temp[i].id) {
-            this.product=temp[i];
-             console.log("this is mine "+this.product);
-             //this.product = JSON.parse(temp[i]);
-           }
-         }
+        this.product = this.getProduct();
+        // let temp:[any] = JSON.parse(localStorage.getItem('Products'));
+        //
+        //  for(let i=0; i<temp.length; i++){
+        //    if(this.id==temp[i].id) {
+        //     this.product=temp[i];
+        //      console.log("this is mine "+this.product);
+        //      //this.product = JSON.parse(temp[i]);
+        //    }
+        //  }
 
       }
     );
@@ -95,6 +96,7 @@ export class ProdComponent {
         return temp[i];
       }
     }
+    return null;
   }
 
   ngOnDestroy() {
